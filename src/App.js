@@ -1,17 +1,18 @@
-import React from 'react'
-import Settings from './settings';
-import topBack from './top-background.png'
-import bottomBack from './bottom-background.png'
+import React, { useContext} from 'react'
+import { SettingsContext } from './settings';
 import './App.css';
 import Landing from './landing';
+import GameScreen from './gamescreen';
+import Background from './background';
 
 export default function App() {
-  console.log(Settings, 'haha');
+  const { startGame, playGame, batchQuestions } = useContext(SettingsContext)
+
   return (
     <div className="App">
-      <img src={bottomBack} className="background bottom-background" alt="background" />
-      <img src={topBack} className="background top-background" alt="background" />
-      <Landing />
+      <Background shrink={startGame} />
+      {!startGame && <Landing playGame={playGame} />}
+      {startGame && <GameScreen batchQuestions={batchQuestions} />}
     </div>
   );
 }
