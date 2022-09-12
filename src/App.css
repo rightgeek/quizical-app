@@ -1,17 +1,96 @@
 :root {
   --body-font: 'Inter', sans-serif;
   --header-font: 'Karla', sans-serif;
+  --color-text: #293264;
+  --color-heading: #293264;
+  --button-bg: #4D5B9E;
+  --button-txt: #F5F7FB;
 }
 
 html {
   font-family: var(--body-font);
   font-size: 16px;
+  background-color: #1a2237;
+  color: var(--color-text);
 }
 
 h1,h2,h3,h4,h5,h6 {
   font-family: var(--header-font);
+  color: var(--color-heading);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .App {
+  position: relative;
   text-align: center;
+  background-color: #F5F7FB;
+  display: block;
+  width: min(550px, 80vw);
+  height: min(550px, 80vw);
+  padding: 2% 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 25%);
+  overflow: hidden;
+}
+
+.App>* {
+  position: relative;
+}
+
+.landing>*+* {
+  margin-top: 1rem;
+}
+
+.btn {
+  background: var(--button-bg);
+  color: var(--button-txt);
+  border: 1px solid var(--button-bg);
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.btn:hover {
+  -webkit-box-shadow: inset 0px 0px 0px 1px #ffffff; 
+  box-shadow: inset 0px 0px 0px 1px #ffffff;
+}
+
+.btn--large {
+  margin-top: 2rem;
+  border-radius: 15px;
+  padding: 1rem 3rem;
+}
+
+.background {
+  position: absolute;
+  z-index: 0;
+  transition: all .2s ease-in-out;
+}
+
+.top-background {
+  top: 0;
+  right: 0;
+  width: 90%;
+}
+
+.bottom-background {
+  bottom: 0;
+  left: 0;
+  width: 80%;
 }

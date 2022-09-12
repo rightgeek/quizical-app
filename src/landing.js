@@ -1,10 +1,11 @@
 import React from 'react';
 
-export default function Landing() {
+export default function Landing(props) {
     return (
-        <>
-            <h1>Quizzical App</h1>
-            <h4>Welcome!</h4>
-        </>
+        <section className='landing'>
+            <h1>Quizzical</h1>
+            <p>What do you know?</p>
+            <button className='btn btn--large'>Start quiz</button>
+        </section>
     )
 }

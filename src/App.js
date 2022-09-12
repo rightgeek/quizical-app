@@ -1,28 +1,17 @@
-import logo from './logo.svg';
+import React from 'react'
+import Settings from './settings';
+import topBack from './top-background.png'
+import bottomBack from './bottom-background.png'
 import './App.css';
 import Landing from './landing';
 
 export default function App() {
+  console.log(Settings, 'haha');
   return (
     <div className="App">
+      <img src={bottomBack} className="background bottom-background" alt="background" />
+      <img src={topBack} className="background top-background" alt="background" />
       <Landing />
     </div>
   );
 }
-
-/***
-<header className="App-header">
-<img src={logo} className="App-logo" alt="logo" />
-<p>
-  Edit <code>src/App.js</code> and save to reload.
-</p>
-<a
-  className="App-link"
-  href="https://reactjs.org"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Learn React
-</a>
-</header>
-*/
