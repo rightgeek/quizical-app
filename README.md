@@ -1,4 +1,4 @@
-# [Quizzical APP](https://rightgeek.github.io/quizical-app)
+# [Quizzical](https://rightgeek.github.io/quizical-app)
 
 A five-question quiz app, made in React.
 
