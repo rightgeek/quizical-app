@@ -5,24 +5,34 @@ export const SettingsContext = createContext();
 export function SettingsContextProvider({ children }) {
     const [gameOn, setGameOn] = useState(false)
     const [batchQuestions, setBatchQuestions] = useState(null)
-    const [answers, setAnswers] = useState([])
+    const [correctAnswers, setCorrectAnswers] = useState(null)
 
     function playGame() {
         batchQuestions && setGameOn(true);
     }
 
     useEffect(() => {
-        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+        fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
         .then(response => response.json())
         .then(data => {
             setBatchQuestions(data.results)
+            const correctAnswers = data.results.map(item => item.correct_answer)
+            setCorrectAnswers(correctAnswers)
         })
     }, [])
+
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
 
     const settings = {
         startGame: gameOn,
         playGame,
-        batchQuestions
+        batchQuestions,
+        correctAnswers,
+        decodeHtml
     }
     
     return (

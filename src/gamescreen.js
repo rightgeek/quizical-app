@@ -3,24 +3,36 @@ import Question from "./question";
 
 export default function GameScreen(props) {
 
-    console.log(props.batchQuestions)
+    //console.log(props.correctAnswers, props.batchQuestions)
+
+    const question = props.batchQuestions.map((item, i) => {
+        const answers = item.incorrect_answers
+
+        answers.splice(Math.round(Math.random() * answers.length), 0, item.correct_answer);
+        
+        const showAnswers = answers.map(answer => {
+            return (
+                <>
+                    <input type="radio" id={answer} name={`q${i}`} value={answer} />
+                    <label htmlFor={answer}>{ props.decodeHtml(answer) }</label>
+                </>
+            )
+        })
+
+        return (
+            <Question>
+                <h6>{ props.decodeHtml(item.question) }</h6>
+                <div className="answers">
+                    {showAnswers}
+                </div>
+            </Question>
+        )
+    })
 
     return (
         <>
             <div className="gamescreen">
-                <Question>
-                    <h6>How would one say goodbye in Spanish?</h6>
-                    <div className="answers">
-                        <input type="radio" id="adios" name="q1" value="adios" />
-                        <label for="adios">Adios</label>
-                        <input type="radio" id="hola" name="q1" value="hola" />
-                        <label for="hola">Hola</label>
-                        <input type="radio" id="au revoir" name="q1" value="au revoir" />
-                        <label for="au revoir">Au Revoir</label>
-                        <input type="radio" id="salir" name="q1" value="salir" />
-                        <label for="salir">Salir</label>
-                    </div>
-                </Question>
+                { question }
             </div>
         </>
     )

@@ -1,4 +1,5 @@
 :root {
+  --body-bg: #F5F7FB;
   --body-font: 'Inter', sans-serif;
   --header-font: 'Karla', sans-serif;
   --color-text: #293264;
@@ -50,10 +51,10 @@ h6 {
 .App {
   position: relative;
   text-align: center;
-  background-color: #F5F7FB;
+  background-color: var(--body-bg);
   display: block;
-  width: min(550px, 80vw);
-  height: min(550px, 80vw);
+  width: min(700px, 80vw);
+  height: min(700px, 80vh);
   padding: 3% 5%;
   display: flex;
   align-items: center;
@@ -120,6 +121,7 @@ h6 {
   text-align: left;
   height: 100%;
   width: 100%;
+  overflow: auto;
 }
 
 [type="radio"] {
@@ -127,8 +129,8 @@ h6 {
 }
 
 .question {
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid #DBDEF0;
 }
 
@@ -139,11 +141,11 @@ h6 {
 }
 
 .answers label {
-  min-width: calc(20% - 1rem - 2px);
+  min-width: calc(15% - 1rem - 2px);
   border: 1px solid #4D5B9E;
   padding: 5px 10px;
   border-radius: .5rem;
-  margin-right: 1rem;
+  margin: .25rem 1rem .25rem 0;
   cursor: pointer;
   display: inline-block;
   text-align: center;
