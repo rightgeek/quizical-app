@@ -1,3 +1,10 @@
+# [Quizzical APP](https://rightgeek.github.io/quizical-app)
+
+A five-question quiz app, made in React.
+
+Questions from [Open Trivia Database](https://opentdb.com/).
+
+<!----
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +75,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+--->

@@ -16,8 +16,7 @@ export function SettingsContextProvider({ children }) {
         .then(response => response.json())
         .then(data => {
             setBatchQuestions(data.results)
-            const correctAnswers = data.results.map(item => item.correct_answer)
-            setCorrectAnswers(correctAnswers)
+            setCorrectAnswers(data.results.map(item => item.correct_answer))
         })
     }, [])
 
@@ -25,6 +24,10 @@ export function SettingsContextProvider({ children }) {
         var txt = document.createElement("textarea");
         txt.innerHTML = html;
         return txt.value;
+    }
+
+    function checkAnswers() {
+
     }
 
     const settings = {
