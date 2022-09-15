@@ -7,7 +7,7 @@ export default function Landing(props) {
             <p>5 trivia questions to start your days with...</p>
             <button
                 className='btn btn--large'
-                onClick={() => props.playGame()}
+                onClick={props.playGame}
             >
                 Go in
             </button>

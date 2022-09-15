@@ -12,13 +12,10 @@ export function SettingsContextProvider({ children }) {
     const [score, setScore] = useState(0)
     const [restart, setRestart] = useState(false)
 
-    function playGame() {
-        batchQuestions && setGameOn(true);
-    }
-
     useEffect(() => {
         console.log('questions fetched!')
-        fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
+        // fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
+        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
         .then(response => response.json())
         .then(data => {
             setBatchQuestions(data.results)
@@ -33,7 +30,7 @@ export function SettingsContextProvider({ children }) {
                 return ansArray
             })
         })
-        .catch((err) => console.log("err", err));
+        .catch((err) => console.log("err", err))
         setRestart(false)
     }, [restart])
 
@@ -43,6 +40,11 @@ export function SettingsContextProvider({ children }) {
             setScore(markers.length)
         }
     }, [batchAnswers, correctAnswers, selectedAnswers])
+
+    function playGame() {
+        console.log("Play!");
+        batchQuestions && setGameOn(true);
+    }
 
     function decodeHtml(html) {
         var txt = document.createElement("textarea");
