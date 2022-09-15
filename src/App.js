@@ -17,14 +17,15 @@ export default function App() {
     handleAnswers,
     revealAnswers,
     score,
-    restartGame
+    restartGame,
+    selectedAnswers
   } = useContext(SettingsContext)
 
   return (
     <div className="App">
       <Background shrink={startGame} />
       {!startGame && <Landing playGame={playGame} />}
-      {startGame && <GameScreen correctAnswers={correctAnswers} revealAnswers={revealAnswers} restartGame={restartGame} score={score} batchAnswers={batchAnswers} handleAnswers={handleAnswers} checkAnswers={checkAnswers} decodeHtml={decodeHtml} batchQuestions={batchQuestions} />}
+      {startGame && <GameScreen correctAnswers={correctAnswers} revealAnswers={revealAnswers} selectedAnswers={selectedAnswers} restartGame={restartGame} score={score} batchAnswers={batchAnswers} handleAnswers={handleAnswers} checkAnswers={checkAnswers} decodeHtml={decodeHtml} batchQuestions={batchQuestions} />}
     </div>
   );
 }

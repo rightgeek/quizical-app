@@ -2,7 +2,7 @@ import React from "react";
 import Question from "./question";
 
 export default function GameScreen(props) {
-
+    console.log(props.selectedAnswers);
     const question = props.batchQuestions.map((item, i) => {        
         const showAnswers = props.batchAnswers[i].map((answer, ii) => {
             let buttonStatus = ""
@@ -11,7 +11,7 @@ export default function GameScreen(props) {
             }
             return (
                 <fieldset key={ii} className={buttonStatus}>
-                    <input disabled={props.revealAnswers} type="radio" id={props.decodeHtml(answer).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '')} name={i} value={answer} onChange={props.handleAnswers} />
+                    <input disabled={props.revealAnswers} checked={props.selectedAnswers[i] === answer} type="radio" id={props.decodeHtml(answer).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '')} name={i} value={answer} onChange={props.handleAnswers} />
                     <label htmlFor={props.decodeHtml(answer).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '')}>{ props.decodeHtml(answer) }</label>
                 </fieldset>
             )

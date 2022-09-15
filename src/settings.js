@@ -68,6 +68,7 @@ export function SettingsContextProvider({ children }) {
     function restartGame() {
         setRestart(true)
         setRevealAnswers(false)
+        setSelectedAnswers([0,1,2,3,4])
         // setGameOn(false)
     }
 
@@ -82,7 +83,8 @@ export function SettingsContextProvider({ children }) {
         handleAnswers,
         revealAnswers,
         score,
-        restartGame
+        restartGame,
+        selectedAnswers
     }
     
     return (
