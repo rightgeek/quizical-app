@@ -10,16 +10,21 @@ export default function App() {
     startGame,
     playGame,
     batchQuestions,
+    batchAnswers,
     correctAnswers,
     decodeHtml,
-    checkAnswers
+    checkAnswers,
+    handleAnswers,
+    revealAnswers,
+    score,
+    restartGame
   } = useContext(SettingsContext)
 
   return (
     <div className="App">
       <Background shrink={startGame} />
       {!startGame && <Landing playGame={playGame} />}
-      {startGame && <GameScreen correctAnswers={correctAnswers} checkAnswers={checkAnswers} decodeHtml={decodeHtml} batchQuestions={batchQuestions} />}
+      {startGame && <GameScreen correctAnswers={correctAnswers} revealAnswers={revealAnswers} restartGame={restartGame} score={score} batchAnswers={batchAnswers} handleAnswers={handleAnswers} checkAnswers={checkAnswers} decodeHtml={decodeHtml} batchQuestions={batchQuestions} />}
     </div>
   );
 }

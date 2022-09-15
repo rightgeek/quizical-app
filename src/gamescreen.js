@@ -3,18 +3,16 @@ import Question from "./question";
 
 export default function GameScreen(props) {
 
-    console.log(props.correctAnswers, props.batchQuestions)
-
-    const question = props.batchQuestions.map((item, i) => {
-
-        const Answers = item.incorrect_answers.filter(ans => ans !== item.correct_answer)
-        Answers.splice(Math.round(Math.random() * Answers.length), 0, item.correct_answer)
-        
-        const showAnswers = Answers.map((answer, ii) => {
+    const question = props.batchQuestions.map((item, i) => {        
+        const showAnswers = props.batchAnswers[i].map((answer, ii) => {
+            let buttonStatus = ""
+            if (props.revealAnswers) {
+                buttonStatus = answer === props.correctAnswers[i] ? "correct" : "wrong"
+            }
             return (
-                <fieldset key={ii}>
-                    <input type="radio" id={answer} name={`q${i}`} value={answer} />
-                    <label htmlFor={answer}>{ props.decodeHtml(answer) }</label>
+                <fieldset key={ii} className={buttonStatus}>
+                    <input disabled={props.revealAnswers} type="radio" id={props.decodeHtml(answer).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '')} name={i} value={answer} onChange={props.handleAnswers} />
+                    <label htmlFor={props.decodeHtml(answer).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '')}>{ props.decodeHtml(answer) }</label>
                 </fieldset>
             )
         })
@@ -34,12 +32,18 @@ export default function GameScreen(props) {
             <div className="gamescreen">
                 { question }
             </div>
-            <button
+            {!props.revealAnswers && <button
                 className='btn'
                 onClick={() => props.checkAnswers()}
             >
                 Check answers
-            </button>
+            </button>}
+            {props.revealAnswers && <div className="scoresReveal"><span>You scored { props.score }/5 correct answers</span><button
+                className='btn'
+                onClick={() => props.restartGame()}
+            >
+                Play again
+            </button></div>}
         </>
     )
 }
