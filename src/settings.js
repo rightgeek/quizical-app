@@ -13,7 +13,6 @@ export function SettingsContextProvider({ children }) {
     const [restart, setRestart] = useState(false)
 
     useEffect(() => {
-        console.log('questions fetched!')
         // fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
         fetch('https://opentdb.com/api.php?amount=5&type=multiple')
         .then(response => response.json())
@@ -42,7 +41,6 @@ export function SettingsContextProvider({ children }) {
     }, [batchAnswers, correctAnswers, selectedAnswers])
 
     function playGame() {
-        console.log("Play!");
         batchQuestions && setGameOn(true);
     }
 

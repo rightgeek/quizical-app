@@ -2,7 +2,6 @@ import React from "react";
 import Question from "./question";
 
 export default function GameScreen(props) {
-    console.log(props.selectedAnswers);
     const question = props.batchQuestions.map((item, i) => {        
         const showAnswers = props.batchAnswers[i].map((answer, ii) => {
             let buttonStatus = ""
