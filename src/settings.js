@@ -4,21 +4,23 @@ export const SettingsContext = createContext();
 
 export function SettingsContextProvider({ children }) {
     const [gameOn, setGameOn] = useState(false)
-    const [batchQuestions, setBatchQuestions] = useState(null)
-    const [batchAnswers, setBatchAnswers] = useState(null)
-    const [correctAnswers, setCorrectAnswers] = useState(null)
+    const [batchQuestions, setBatchQuestions] = useState('')
+    const [batchAnswers, setBatchAnswers] = useState('')
+    const [correctAnswers, setCorrectAnswers] = useState('')
     const [selectedAnswers, setSelectedAnswers] = useState([0,1,2,3,4])
     const [revealAnswers, setRevealAnswers] = useState(false)
     const [score, setScore] = useState(0)
-    const [restart, setRestart] = useState(false)
+    const [restart, setRestart] = useState(0)
 
     useEffect(() => {
+        const controller = new AbortController()
+        const signal = controller.signal
         // fetch('https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple')
-        fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+        fetch('https://opentdb.com/api.php?amount=5&type=multiple', { signal })
         .then(response => response.json())
         .then(data => {
-            setBatchQuestions(data.results)
-            setCorrectAnswers(data.results.map(item => item.correct_answer))
+            setBatchQuestions(data.results || '')
+            setCorrectAnswers(data.results.map(item => item.correct_answer) || '')
             setBatchAnswers(prevBatchAnswers => {
                 const ansArray = data.results.map(item => {
                     const answers = item.incorrect_answers.filter(ans => ans !== item.correct_answer)
@@ -28,9 +30,14 @@ export function SettingsContextProvider({ children }) {
 
                 return ansArray
             })
+            setRevealAnswers(false)
+            setSelectedAnswers([0,1,2,3,4])
         })
         .catch((err) => console.log("err", err))
-        setRestart(false)
+
+        return () => {
+            controller.abort()
+        }
     }, [restart])
 
     useEffect(() => {
@@ -64,9 +71,11 @@ export function SettingsContextProvider({ children }) {
     }
 
     function restartGame() {
-        setRestart(true)
-        setRevealAnswers(false)
-        setSelectedAnswers([0,1,2,3,4])
+        setRestart(res => res + 1)
+        // setTimeout(() => {
+        //     setRevealAnswers(false)
+        //     setSelectedAnswers([0,1,2,3,4])
+        // }, 1000)
         // setGameOn(false)
     }
 
