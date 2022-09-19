@@ -72,11 +72,6 @@ export function SettingsContextProvider({ children }) {
 
     function restartGame() {
         setRestart(res => res + 1)
-        // setTimeout(() => {
-        //     setRevealAnswers(false)
-        //     setSelectedAnswers([0,1,2,3,4])
-        // }, 1000)
-        // setGameOn(false)
     }
 
     const settings = {
